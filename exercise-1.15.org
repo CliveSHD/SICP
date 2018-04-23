@@ -1,0 +1,6 @@
+
+--- Answer ---
+
+1. 5 times
+2.1. in space: log3(a)
+2.2. number of steps: log3(a)
