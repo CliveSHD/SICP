@@ -1,0 +1,14 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (expt b n a)
+  (cond ((= n 0) a)
+        ((even? n) (expt (square b) (/ n 2) a))
+        (else (expt b (- n 1) (* a b)))))
+      
+(define (fast-expt b n)
+  (expt b n 1))
+
+(define (square x) (* x x))
+#+END_SRC
