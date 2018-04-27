@@ -1,0 +1,33 @@
+
+--- Answer ---
+
+1. Recursive process, factorial and pi.
+#+BEGIN_SRC scheme
+(define (product term a next b)
+  (if (> a b)
+      1
+      (* (term a) (product term (next a) next b))))
+    
+(define (factorial n)
+  (define (id x) x)
+  (define (inc x) (+ x 1))
+  (product id 1 inc n))
+
+(define (pi n)
+  (define (term x)
+    (if (even? x)
+        (/ (+ x 2) (+ x 1))
+        (/ (+ x 1) (+ x 2))))
+  (define (next x) (+ x 1))
+  (* 4 (product term 1 next n)))
+#+END_SRC
+
+2. Iterative process
+#+BEGIN_SRC scheme
+(define (product term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (* result (term a)))))
+  (iter a 1))
+#+END_SRC
