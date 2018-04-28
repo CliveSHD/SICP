@@ -1,0 +1,33 @@
+
+--- Answer ---
+
+Filtered accumulate:
+#+BEGIN_SRC scheme
+(define (filtered-accumulate combiner null-value term a next b filter)
+  (if (> a b)
+      null-value
+      (combiner (if (filter a)
+                    (term a)
+                    null-value) (filtered-accumulate combiner null-value term (next a) next b filter))))
+#+END_SRC
+
+1. The sum of the squares of the prime numbers in the interval a to b:
+#+BEGIN_SRC scheme
+(define (sum-of-prime-squares a b) (filtered-accumulate + 0 square a inc b prime?))
+#+END_SRC
+
+2. The product of all the positive integers less than n that are relatively prime to n:
+#+BEGIN_SRC scheme
+(define (gcd a b)
+  (cond ((< a b) (gcd b a))
+        ((= b 0) a)
+        (else (gcd b (remainder a b)))))
+      
+(define (relative-prime? a b)
+  (= (gcd a b) 1))
+
+(define (product-of-relative-primes n)
+  (define (filter a)
+    (relative-prime? a n))
+  (filtered-accumulate * 1 id 1 inc n filter))
+#+END_SRC
