@@ -3,15 +3,15 @@
 
 1. Recursive process.
 #+BEGIN_SRC scheme
-(define (accumulate combiner null-value a next b)
+(define (accumulate combiner null-value term a next b)
   (if (> a b)
       null-value
-      (combiner (term a) (accumulate combiner null-value (next a) b))))
+      (combiner (term a) (accumulate combiner null-value term (next a) b))))
 #+END_SRC
 
 2. Iterative process.
 #+BEGIN_SRC scheme
-(define (accumulate combiner null-value a next b)
+(define (accumulate combiner null-value term a next b)
   (define (iter a result)
     (if (> a b)
         result
