@@ -1,0 +1,9 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(f f)
+(f 2)
+(2 2)
+Error!
+#+END_SRC
