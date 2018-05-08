@@ -1,0 +1,27 @@
+
+--- Answer ---
+
+Recursive process:
+#+BEGIN_SRC scheme
+(define (cont-frac n d k)
+  (define (frac-rec i)
+    (/ (n i)
+       (+ (d i)
+          (if (= i k)
+              0
+              (frac-rec (+ i 1))))))
+  (frac-rec 1))
+#+END_SRC
+
+Iterative process:
+#+BEGIN_SRC scheme
+(define (cont-frac n d k)
+  (define (frac-iter i result)
+    (if (= i 0)
+        result
+        (frac-iter (- i 1)
+                   (/ (n i)
+                      (+ (d i)
+                         result)))))
+  (frac-iter k 0))
+#+END_SRC
