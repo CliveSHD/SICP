@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (compose f g x)
+  (f (g x)))
+#+END_SRC
