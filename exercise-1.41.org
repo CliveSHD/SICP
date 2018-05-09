@@ -1,0 +1,10 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (double p x)
+  (p (p x)))
+
+(((double (double double)) inc) 5)
+21
+#+END_SRC
