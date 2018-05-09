@@ -1,0 +1,20 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (cont-frac n d k)
+  (define (frac-iter i result)
+    (if (= i 0)
+        result
+        (frac-iter (- i 1)
+                   (/ (n i)
+                      (+ (d i)
+                         result)))))
+  (frac-iter k 0))
+
+(define (tan-cf x k)
+  (let ((s (- (square x))))
+       (cont-frac (lambda (i) (if (= i 1) x s))
+                  (lambda (i) (- (* i 2) 1))
+                  k)))
+#+END_SRC
