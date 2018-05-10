@@ -1,0 +1,10 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (iterative-improve g i)
+  (define (try guess)
+    (if (g guess)
+        guess
+        (try (i guess)))))
+#+END_SRC
