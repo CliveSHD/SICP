@@ -1,0 +1,30 @@
+
+--- Answer ---
+
+First implementation:
+#+BEGIN_SRC scheme
+(define (length segment)
+  (sqrt (+ (square (- (x-point (end-segment segment))
+                      (x-point (start-segment segment))))
+           (square (- (y-point (end-segment segment))
+                      (y-point (start-segment segment)))))))
+
+(define (make-rect s-width-1 s-height-1 s-width-2 s-height-2)
+  (cons (cons s-width-1 s-height-1) (cons s-width-2 s-height-2)))
+(define (width-1 r)
+  (car (car r)))
+(define (width-2 r)
+  (car (cdr r)))
+(define (height-1 r)
+  (cdr (car r)))
+(define (height-2 r)
+  (cdr (cdr r)))
+
+(define (perimeter r)
+  (* 2 (+ (length (width-1 r))
+          (length (height-1 r)))))
+        
+(define (area r)
+  (* (length (width-1 r))
+     (length (height-1 r))))
+#+END_SRC
