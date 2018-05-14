@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (width x)
+  (abs (/ (- (lower-bound x) (upper-bound x)) 2)))
+#+END_SRC
