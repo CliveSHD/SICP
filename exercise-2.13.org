@@ -1,0 +1,4 @@
+
+--- Answer ---
+
+If percent tolerance is very small =R1 * R2= is almost the same with =R1 + R2=.
