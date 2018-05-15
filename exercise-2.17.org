@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (last-pair l)
+  (list-ref l (- (length l) 1)))
+#+END_SRC
