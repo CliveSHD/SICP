@@ -1,0 +1,16 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (make-center-percent c p)
+  (make-interval (* c (- 1 p)) (* c (+ 1 p))))
+
+(define (certer interval)
+  (/ (+ (lower-bound interval) (upper-bound interval)) 2))
+
+(define (width interval)
+  (/ (- (upper-bound interval) (lower-bound interval)) 2))
+
+(define (percent interval)
+  (/ (width interval) (certer interval)))
+#+END_SRC
