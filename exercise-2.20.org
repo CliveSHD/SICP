@@ -1,0 +1,15 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (same-parity x . y)
+  (define (filter l f result)
+    (if (null? l)
+        result
+        (filter (cdr l) f (if (f (car l))
+                              (append result (list (car l)))
+                              result))))
+  (filter y (if (odd? x)
+                odd?
+                even?) (list x)))
+#+END_SRC
