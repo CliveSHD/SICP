@@ -1,0 +1,10 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (deep-reverse items)
+  (let ((r (reverse items)))
+       (map (lambda (x) (if (pair? x)
+                            (deep-reverse x)
+                            x)) r)))
+#+END_SRC
