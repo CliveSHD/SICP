@@ -2,8 +2,18 @@
 --- Answer ---
 
 #+BEGIN_SRC scheme
+; recursive version
 (define (fringe l)
   (cond ((null? l) ())
         ((not (pair? (car l))) (cons (car l) (fringe (cdr l))))
         (else (append (fringe (car l)) (fringe (cdr l))))))
+      
+; iterative version
+(define (fringe l)
+  (define (fringe-iter l result)
+    (cond ((null? l) result)
+          ((not (pair? l)) (cons l result))
+          (else (fringe-iter (car l)
+                             (fringe-iter (cdr l) result)))))
+  (fringe-iter l ()))
 #+END_SRC
