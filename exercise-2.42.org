@@ -1,0 +1,45 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+; positions: (list (list 1 2) (list 2 3) ...)
+(define (queens board-size)
+  (define (queen-cols k)
+    (if (= k 0)
+        (list empty-board)
+        (filter
+         (lambda (positions) 
+           (safe? k positions))
+         (flatmap
+          (lambda (rest-of-queens)
+            (map (lambda (new-row)
+                   (adjoin-position 
+                    new-row 
+                    k 
+                    rest-of-queens))
+                 (enumerate-interval 
+                  1 
+                  board-size)))
+          (queen-cols (- k 1))))))
+  (queen-cols board-size))
+
+(define empty-board ())
+(define (adjoin-position new-row k rest-of-queens)
+  (cons new-row rest-of-queens))
+(define (safe? k positions)
+  (let ((position (car positions))
+        (new-row (caar positions))
+        (new-col (cadar positions))
+        (rest (cdr positions)))
+      (accumulate (lambda (pos result)
+                    (let ((row (car pos))
+                          (col (cadr pos)))
+                        (and (not (= (- new-row new-col)
+                                     (- row col)))
+                             (not (= (+ new-row new-col)
+                                     (+ row col)))
+                             (not (= new-row row))
+                             result)))
+                  #t
+                  rest)))
+#+END_SRC
