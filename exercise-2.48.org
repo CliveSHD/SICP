@@ -1,0 +1,8 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define make-segment cons)
+(define start-segment car)
+(define end-segment cdr)
+#+END_SRC
