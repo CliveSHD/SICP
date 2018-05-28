@@ -1,0 +1,8 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(car ''somthing)
+=> (car (quote (quote something)))
+quote 不是一个 procedure 所以作为 list 的第一个成员被 print
+#+END_SRC
