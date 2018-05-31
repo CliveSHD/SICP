@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+Same results.
+But the second do faster.
+#+END_SRC
