@@ -1,0 +1,17 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (encode message tree)
+  (if (null? message)
+      '()
+      (append (encode-symbol (car message) tree) (encode (cdr message) tree))))
+(define (encode-symbol symbol tree)
+  (cond ((leaf? tree) '())
+        ((memq symbol (symbols tree))
+         (let ((left (left-branch tree)) (right (right-branch tree)))
+           (if (memq symbol (symbols left))
+               (cons 0 (encode-symbol symbol left))
+               (cons 1 (encode-symbol symbol right)))))
+        (else (error "No such symbol" symbol))))
+#+END_SRC

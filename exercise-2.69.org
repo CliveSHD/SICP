@@ -1,0 +1,12 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (generate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
+(define (successive-merge set)
+  (if (null? (cdr set))
+      (car set)
+      (let ((new (make-code-tree (car set) (cadr set))))
+        (successive-merge (adjoin-set new (cddr set))))))
+#+END_SRC

@@ -1,0 +1,6 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(A D A B B C A)
+#+END_SRC
