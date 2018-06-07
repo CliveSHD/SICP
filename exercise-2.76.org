@@ -1,0 +1,6 @@
+
+--- Answer ---
+
+For generic operations with explicit dispatch adding new operations is easy.
+For message passing, adding new types can be done without changing existing code, but adding new operations requires changing all the old code.
+Data directed programming actually "solves" the Expression problem by allowing new types *and* new operations to be added without changing existing code.

@@ -1,0 +1,6 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+Apply-generic is invoked twice, first dispatch is magnitude of complex, second is magnitude of rectangular.
+#+END_SRC
