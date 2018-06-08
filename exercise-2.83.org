@@ -1,0 +1,19 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+; integer -> rational
+(define (raise i)
+  (make-rational i 1))
+(put 'raise 'integer raise)
+
+; rational -> real
+(define (raise r)
+  (make-real (/ (numer r) (denom r))))
+(put 'raise 'rational raise)
+
+; real -> complex
+(define (raise r)
+  (make-from-real-imag r 0))
+(put 'raise 'real raise)
+#+END_SRC

@@ -1,0 +1,4 @@
+
+--- Answer ---
+
+Apply-generic calls itself recursively on coerced types, so it goes into infinite recursion. 
