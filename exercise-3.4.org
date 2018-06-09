@@ -1,0 +1,24 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (make-account balance password)
+  (let ((count 0))
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance 
+                     (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (dispatch p m)
+      (cond ((> count 7) (lambda (m) "call-the-corps"))
+            ((not (eq? p password)) (lambda (m) (begin (set! count (+ count 1)) "Incorrect password")))
+            ((eq? m 'withdraw) withdraw)
+            ((eq? m 'deposit) deposit)
+            (else (error "Unknown request: 
+                   MAKE-ACCOUNT" m))))
+  dispatch))
+#+END_SRC

@@ -1,0 +1,9 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (make-accumulator n)
+  (lambda (m)
+    (begin (set! n (+ n m))
+           n)))
+#+END_SRC
