@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define f (let ((n 1))
+            (lambda (x) (begin (set! n (* n x)) n))))
+#+END_SRC

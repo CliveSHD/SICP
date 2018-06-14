@@ -1,0 +1,10 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (make-join acc password new-password)
+  (define (dispatch p m)
+    (cond ((not (eq? p new-password)) "Incorrect password")
+          (else (acc password m))))
+  dispatch)
+#+END_SRC

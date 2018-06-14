@@ -18,4 +18,5 @@
           ((eq? m 'deposit) deposit)
           (else (error "Unknown request: 
                  MAKE-ACCOUNT" m))))
+  dispatch)
 #+END_SRC
