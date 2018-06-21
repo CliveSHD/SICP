@@ -1,0 +1,8 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(cdr x) => ('b)
+
+(cdr x) => ('b 'c 'd)
+#+END_SRC

@@ -1,0 +1,6 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+What mystery does is reverse the list.
+#+END_SRC

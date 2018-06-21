@@ -1,0 +1,14 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (cycle? x)
+  (let ((counted '()))
+    (define (loop y)
+      (cond ((not (pair? y)) #f)
+            ((memq y counted) #t)
+            (else (begin (set! counted (cons y counted))
+                         (or (loop (car y))
+                             (loop (cdr y)))))))
+    (loop x)))
+#+END_SRC

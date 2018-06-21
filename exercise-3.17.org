@@ -1,0 +1,16 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (count-pairs x)
+  (let ((counted '()))
+    (define (iter y)
+      (if (or (not (pair? y)) (memq y counted))
+          0
+          (begin
+            (set! counted (cons y counted))
+            (+ (iter (car y))
+               (iter (cdr y))
+               1))))
+  (iter x)))
+#+END_SRC
