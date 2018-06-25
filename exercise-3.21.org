@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (print-queue queue)
+  (front-ptr queue))
+#+END_SRC
