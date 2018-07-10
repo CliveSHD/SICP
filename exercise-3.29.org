@@ -1,0 +1,14 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (or-gate a1 a2 output)
+  (define (or-action-procedure)
+    (let ((new-value (make-wire)))
+    (if (= (get-signal a1) (get-signal a2))
+        (after-delay and-gate-delay (and-gate a1 a2 output))
+        (after-delay (+ and-gate-delay inverter-delay) (begin (and-gate a1 a2 new-value)
+                                                              (inverter new-value output))))))
+  (add-action! a1 or-action-procedure)
+  (add-action! a2 or-action-procedure))
+#+END_SRC

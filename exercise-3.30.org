@@ -1,0 +1,13 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (ripple-carry-adder a-list b-list s-list c)
+  (define (iter a b s c-in c-out)
+    (if (= (length a) 1)
+        (full-adder (car a) (car b) c-in (car s) c-out)
+        (let ((c-temp (make-wire)))
+          (iter (cdr a) (cdr b) (cdr s) c-in c-temp)
+          (full-adder (car a) (car b) c-temp (car s) c-out))))
+  (iter a-list b-list s-list 0 c))
+#+END_SRC
