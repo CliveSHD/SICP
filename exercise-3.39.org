@@ -1,0 +1,16 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define x 10)
+(define s (make-serializer))
+(parallel-execute 
+  (lambda () 
+    (set! x ((s (lambda () (* x x))))))
+  (s (lambda () (set! x (+ x 1)))))
+#+END_SRC
+
+1. 101
+2. 121
+3. 11
+4. 100

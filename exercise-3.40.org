@@ -1,0 +1,28 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define x 10)
+(parallel-execute 
+ (lambda () (set! x (* x x)))
+ (lambda () (set! x (* x x x))))
+#+END_SRC
+
+1. 100 * 100 * 100
+2. 1000 * 1000
+3. 10 * 1000
+4. 100
+5. 1000
+6. 10 * 100 * 100
+7. 10 * 10 * 100
+8. 10 * 10 * 10
+
+#+BEGIN_SRC scheme
+(define x 10)
+(define s (make-serializer))
+(parallel-execute 
+ (s (lambda () (set! x (* x x))))
+ (s (lambda () (set! x (* x x x)))))
+#+END_SRC
+
+After serializing the result is 100 * 1000.
