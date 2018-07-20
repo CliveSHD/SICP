@@ -1,0 +1,7 @@
+
+--- Answer ---
+
+#+BEGIN_SRC scheme
+(define (partial-sums stream)
+  (add-streams s (cons-stream 0 (partial-sums s))))
+#+END_SRC
