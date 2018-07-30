@@ -23,6 +23,8 @@
           env))
         ((cond? exp)
          (eval (cond->if exp) env))
+        ((let? exp) ;; exercise 4.6
+         (eval (let->combination exp) env))
         ((application? exp)
          (apply (eval (operator exp) env)
                 (list-of-values
@@ -31,8 +33,7 @@
         (else (error "Unknown expression type: EVAL" exp))))
 
 ;; exercise 4.3
-(define (eval exp env)
-  (define (dispatch type)))
+
 
 (define (apply procedure arguments)
   (cond ((primitive-procedure? procedure)
@@ -181,6 +182,8 @@
 (define (cond-clauses exp) (cdr exp))
 (define (cond-else-clause? clause)
   (eq? (cond-predicate clause) 'else))
+(define (cond-extend-clause? clause) ;; exercise 4.5
+  (eq? (car (cond-actions clause)) '=>))
 (define (cond-predicate clause)
   (car clause))
 (define (cond-actions clause)
@@ -199,8 +202,20 @@
                 (error "ELSE clause isn't
                         last: COND->IF"
                        clauses))
-            (make-if (cond-predicate first)
-                     (sequence->exp
-                      (cond-actions first))
-                     (expand-clauses
-                      rest))))))
+            (if (cond-extend-clause? first)
+                (if (cond-predicate first)
+                    ((caddr first) (cond-predecate first)))
+                (make-if (cond-predicate first)
+                         (sequence->exp
+                          (cond-actions first))
+                         (expand-clauses
+                          rest)))))))
+
+;; exercise 4.6
+(define (let? exp) (tagged-list? exp 'let))
+(define (let-vars exp) (map car (cadr exp)))
+(define (let-exps exp) (map cadr (cadr exp)))
+(define (let-body exp) (cddr exp))
+(define (let->combination exp)
+  (cons (make-lambda (let-vars exp) (let-body exp))
+        (let-exps exp)))
