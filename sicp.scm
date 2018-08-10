@@ -281,3 +281,42 @@
           (scan (frame-variables frame)
                 (frame-values frame)))))
   (env-loop env))
+
+(define (define-variable! var val env)
+  (let ((frame (first-frame env)))
+    (define (scan vars vals)
+      (cond ((null? vars)
+             (add-binding-to-frame! var val frame))
+            ((eq? var (car vars))
+             (set-car! vals val))
+            (else (scan (cdr vars) (cdr vals)))))
+    (scan (frame-variables frame)
+          (frame-values frame))))
+
+;; run the evaluator as a program
+(define (setup-environment)
+  (let ((initial-env
+         (extend-environment
+          (primitive-procedure-names)
+          (primitive-procedure-objects)
+          the-empty-environment)))
+    (define-variable! 'true true initial-env)
+    (define-variable! 'false false initial-env)
+    initial-env))
+(define the-global-environment
+  (setup-environment))
+(define (primitive-procedure? proc)
+  (tagged-list? proc 'primitive))
+(define (primitive-implementation proc)
+  (cadr proc))
+(define primitive-procedures
+  (list (list 'car car)
+        (list 'cdr cdr)
+        (list 'cons cons)
+        (list 'null? null?)))
+(define (primitive-procedure-names)
+  (map car primitive-procedures))
+(define (primitive-procedure-objects)
+  (map (lambda (proc)
+         (list 'primitive (cadr proc)))
+       (primitive-procedures)))
